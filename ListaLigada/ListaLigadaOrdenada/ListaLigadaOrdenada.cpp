@@ -8,6 +8,7 @@ struct NO {
 };
 
 NO* primeiro = NULL;
+NO* ultimo = NULL;
 
 // headers
 void menu();
@@ -115,7 +116,9 @@ void exibirElementos()
 void inserirElemento()
 {
 	// aloca memoria dinamicamente para o novo elemento
+	
 	NO* novo = (NO*)malloc(sizeof(NO));
+
 	if (novo == NULL)
 	{
 		return;
@@ -129,15 +132,24 @@ void inserirElemento()
 	{
 		primeiro = novo;
 	}
+	else if (novo->valor < primeiro->valor) {
+		novo->prox = primeiro;
+		primeiro = novo;
+
+	}
 	else
 	{
-		// procura o final da lista
 		NO* aux = primeiro;
-		while (aux->prox != NULL) {
+		while (aux->prox != NULL && novo->valor > aux->prox->valor) {
 			aux = aux->prox;
 		}
+		novo->prox = aux->prox;
 		aux->prox = novo;
 	}
+
+
+
+
 }
 
 void excluirElemento()
