@@ -118,7 +118,8 @@ void inserirElemento()
 	// aloca memoria dinamicamente para o novo elemento
 	
 	NO* novo = (NO*)malloc(sizeof(NO));
-	NO* aux = primeiro;
+	NO* aux, *ant = primeiro;
+	int inserir;
 
 	if (novo == NULL)
 	{
@@ -126,38 +127,59 @@ void inserirElemento()
 	}
 
 	cout << "Digite o elemento: ";
-	cin >> novo->valor;
-	novo->prox = NULL;
+	cin >> inserir;
 
 	if (primeiro == NULL)
 	{
+
+		novo->valor = inserir;
+		novo->prox = NULL;
 		primeiro = novo;
+
 	}
 
-	else if(novo->valor == primeiro->valor) {
+	else if(inserir == primeiro->valor) {
 			cout << "Valor digitado ja existente" << endl;
 			return;
 	}
-	else {
-		if (novo->valor < primeiro->valor) {
-			novo->prox = primeiro;
-			primeiro = novo;
+	else if(inserir < primeiro->valor){
+		
+		novo->valor = inserir;
+		novo->prox = primeiro;
+			
+		primeiro = novo;
 
-		}
-		else
-		{
-			while (aux->prox != NULL && novo->valor > aux->prox->valor) {
+	}
+	else{
+
+		aux = primeiro->prox;
+
+			while (aux) {
+
+				if (inserir == aux->valor) {
+					cout << "Valor digitado ja existente" << endl;
+					return;
+				}
+				if (inserir < aux->valor) {
+
+					novo->valor = inserir;
+					novo->prox = aux;
+					ant->prox = novo;
+					return;
+				}
+				ant = aux;
 				aux = aux->prox;
 			}
-			novo->prox = aux->prox;
-			aux->prox = novo;
+			
+
+			novo->valor = inserir;
+			novo->prox = NULL;
+			ant->prox = novo;
 		}
-	}
-
-
-
+		
 
 }
+
 
 void excluirElemento()
 {
