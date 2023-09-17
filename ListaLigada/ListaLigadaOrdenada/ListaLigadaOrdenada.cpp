@@ -184,6 +184,37 @@ void inserirElemento()
 void excluirElemento()
 {
 
+	if (primeiro == NULL) {
+		cout << "Lista vazia" << endl;
+	}
+	else {
+		NO* aux, * ant;
+		int deletar;
+
+		aux = primeiro;
+
+		cout << "Digite o numero que deseja excluir: \n" << endl;
+		cin >> deletar;
+
+		if (!aux) {
+			cout << "Valor nao encontrado" << endl;
+			return;
+
+		}
+		if (aux == primeiro) {
+			primeiro = aux->prox;
+		}
+		else {
+			while (ant->prox != aux) {
+				ant = ant->prox;
+			}
+			ant->prox = aux->prox;
+		}
+
+		free(aux);
+
+	}
+
 }
 
 void buscarElemento()
