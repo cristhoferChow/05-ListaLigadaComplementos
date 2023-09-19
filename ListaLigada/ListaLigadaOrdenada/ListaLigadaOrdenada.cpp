@@ -219,6 +219,25 @@ void excluirElemento()
 
 void buscarElemento()
 {
+	NO* aux = primeiro;
+	int busca;
+	if (primeiro == NULL) {
+		cout << "Lista vazia" << endl;
+	}
+	else {
+		cout << "Digite o valor de busca: \n" << endl;
+		cin >> busca;
+
+		while (aux != NULL) {
+			if (aux->valor == busca) {
+				cout << "Valor encontrado" << endl;
+				break;
+			}
+			aux = aux->prox;
+		}
+		if (aux == NULL) {
+			cout << "Valor nao encontrado" << endl;
+		}
 
 }
 
