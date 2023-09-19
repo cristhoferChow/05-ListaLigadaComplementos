@@ -196,25 +196,45 @@ void excluirElemento()
 		cout << "Digite o numero que deseja excluir: \n" << endl;
 		cin >> deletar;
 
-		if (!aux) {
-			cout << "Valor nao encontrado" << endl;
-			return;
-
-		}
-		if (aux == primeiro) {
-			primeiro = aux->prox;
-		}
-		else {
-			while (ant->prox != aux) {
-				ant = ant->prox;
+		if (aux) {
+			if (aux->valor == deletar) {
+				primeiro = aux->prox;
+				free(aux);
+				cout << "Valor excluido" << endl;
+				return;
 			}
-			ant->prox = aux->prox;
+			else if (deletar < aux->valor) {
+				cout << "Valor não encontrado" << endl;
+				return;
+			}
+			else {
+
+				ant = aux;
+				aux = aux->prox;
+			}
+
+			while (aux) {
+
+				if (aux->valor == deletar) {
+					ant->prox = aux->prox;
+					free(aux);
+					cout << "Valor excluido" << endl;
+					return;
+				}
+				else if (aux->valor > deletar) {
+					cout << "Valor não encontrado" << endl;
+					return;
+				}
+				else {
+					ant = aux;
+					aux = aux->prox;
+				}
+
+			}
+
 		}
 
-		free(aux);
-
-	}
-
+		}
 }
 
 void buscarElemento()
@@ -238,6 +258,7 @@ void buscarElemento()
 		if (aux == NULL) {
 			cout << "Valor nao encontrado" << endl;
 		}
+	}
 
 }
 
