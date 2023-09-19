@@ -248,11 +248,8 @@ void buscarElemento()
 		cout << "Digite o valor de busca: \n" << endl;
 		cin >> busca;
 
-		if (primeiro->valor > busca) {
-			cout << "Valor nao encontrado" << endl;
-			return;
-		}
-		else if (primeiro->valor == busca) {
+
+		if (primeiro->valor == busca) {
 			cout << "Valor encontrado" << endl;
 			return;
 		}
